@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        let numeros = new Array (5);
+        let palabra="";
+        
+       for(let i=0;i<numeros.length;i++){
+        let texto = prompt(i + " introduce cadenas");
+        numeros[i]=texto;
+        if(texto.length > palabra.length)
+        palabra=texto;
+        } 
+        alert("la palabra con mas caracteres es: " + palabra);
+    </script>
+
+</head>
+
+<body>
+ 
+</body>
+</html>

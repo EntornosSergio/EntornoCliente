@@ -1,0 +1,105 @@
+<script type="text/javascript">
+
+    let a1;
+    let a2=100;
+    let a3="texto";
+    let a4="undefine";
+    let a5=null;
+    let a6="true";
+    let a7=3.7;
+    let a8=("3"==3);
+    let a9=(a7+a1);
+    let a10=(a7+a5);
+
+    console.log(typeof a1); // UNDEFINED    
+    console.log(typeof a2); // NUMBER
+    console.log(typeof a3); // STRING
+    console.log(typeof a4); // STRING
+    console.log(typeof a5); // OBJECT
+    console.log(typeof a6); // STRING
+    console.log(typeof a7); //NUMBER
+    console.log(a8); //TRUE
+    console.log(a9); // NAN
+    console.log(a10); // 3.7
+
+    //TIPO A
+    a="39"
+    Number(a);
+    console.log(a);
+    parseInt(a);
+    console.log(a);
+    parseFloat(a);
+    console.log(a);
+    isNaN(a);
+    console.log(a);
+
+    a="patata99"
+    Number(a);
+    console.log(a);
+    parseInt(a);
+    console.log(a);
+    parseFloat(a);
+    console.log(a);
+    isNaN(a);
+    console.log(a);
+
+    a="99patatas"
+    Number(a);
+    console.log(a);
+    parseInt(a);
+    console.log(a);
+    parseFloat(a);
+    console.log(a);
+    isNaN(a);
+    console.log(a);
+
+    a=(1.7+"3.2")
+    Number(a);
+    console.log(a);
+    parseInt(a);
+    console.log(a);
+    parseFloat(a);
+    console.log(a);
+    isNaN(a);
+    console.log(a);
+
+    a="89.91"
+    Number(a);
+    console.log(a);
+    parseInt(a);
+    console.log(a);
+    parseFloat(a);
+    console.log(a);
+    isNaN(a);
+    console.log(a);
+
+    function sumar (x,y){
+        a=x+y;
+        alert(a);
+    }
+    function restar (x,y){
+        var a=x-y;
+        alert(a);
+        return a;
+    }
+    function multiplicar(x,y){
+        let a=x*y;
+        alert(a);
+    }
+    var a=6;
+    let b=2;
+    let c=3;
+    sumar(a,b);
+    b=restar(a,c);
+    multiplicar(b,c);
+    alert(a+b+c);
+
+    let text="Una mañana soleada encontre el sol tras mi ventana";
+
+    alert(text.indexOf('sol'));
+    alert(text.slice(4,6));
+    alert(text.substr(4,6));
+    text.replace('soledad','nublada');
+    alert(text);
+
+</script>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style type='text/css'>
+        body {
+            font-family: 'Kite One', sans-serif;
+        }
+
+        div {
+            border-style: solid;
+            border-width: 2px;
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .uno {
+            line-height: 30px;
+        }
+    </style>
+    <script>
+        function ejercicio1() {
+            let num = document.getElementById("n1").value;
+            //var fechaNac = new Date(Date.parse(num));
+            var fechaNac = new Date(num);
+            var dia = fechaNac.getDay();
+            var diasSemana = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+            let diaSemanaNombre = diasSemana[dia];
+            alert("El día de la semana es: " + diaSemanaNombre);
+        }
+        function ejercicio2() {
+            var fechaAntigua = new Date("2022-08-23");
+            var fechaHoy = new Date();
+            var tiempoAntigua = fechaAntigua.getTime();
+            var tiempoHoy = fechaHoy.getTime();
+            var diferenciaMilisegundos = tiempoHoy - tiempoAntigua;
+            var diferenciaDias = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
+    
+            alert(diferenciaDias + " días");
+        }
+        function ejercicio3() {
+    var fechaActual = new Date();
+    var fecha = document.getElementById("n3").value;
+    var fechaBuena = new Date(fecha);
+    
+    var diaSemana = fechaBuena.getDay();
+    let diasSemana = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+    let diaSemanaNombre = diasSemana[diaSemana];
+    
+    var añoActual = fechaActual.getFullYear();
+    var mesActual = fechaActual.getMonth();
+    var diaActual = fechaActual.getDate();
+    
+    var añoNacimiento = fechaBuena.getFullYear();
+    var mesNacimiento = fechaBuena.getMonth();
+    var diaNacimiento = fechaBuena.getDate();
+
+    var edad = añoActual - añoNacimiento;
+
+    if (mesActual < mesNacimiento || (mesActual === mesNacimiento && diaActual < diaNacimiento)) {
+        edad--;
+    }
+
+    alert("El día de la semana es: " + diaSemanaNombre + " y su edad actual es de: " + edad + " años");
+}
+
+    function ejercicio4() {
+    
+    }
+
+    function ejercicio5() {
+    var fechaActual = new Date();
+    var añadirDias= 100;
+    fechaActual.setDate(fechaActual.getDate()+añadirDias);
+    var fecha = new Date();
+    alert("La fecha de hoy es: " + fecha.toDateString() + " y dentro de 100 dias sera: " + fechaActual.toDateString())
+    }
+
+    </script>
+
+</head>
+
+<body>
+    <form>
+        <input type="reset" value="BORRAR">
+        <div>
+            <br> Introduce tu fecha de nacimiento con el año 2024: <input type="text" id="n1" size="10"></p>
+            <input type="button" class="uno" value="Ejercicio 1" onclick="ejercicio1()">
+            <br> <br>
+        </div>
+        <div>
+            <input type="button" class="uno" value="Ejercicio 2" onclick="ejercicio2()">
+            <br> <br>
+        </div>
+        <div>
+            Introduce tu fecha de nacimiento en formato dd/mm/yyyy
+            <br> <br>
+            <input type="date" size="8" id="n3">
+            <br> <br>
+            <input type="button" class="uno" value="Ejercicio 3" onclick="ejercicio3()">
+
+        </div>
+        <div>
+            Introduce n&uacute;meros enteros hasta que pongas FIN:
+            <input type="text" id="n4" size="8">
+            <br>
+            
+        <br>
+        <p>Resultado: <input type="text" id="resul" size="8" readonly="readonly"></p>
+        <br>
+        <input type="button" class="uno" value="Introducir" onclick="ejercicio4()">
+        </div>
+        <div>
+            <p>Ejercicio 4</p>
+        </div>
+        <div>
+            <p>Ejercicio 5</p>
+            <br>
+            <input type="button" class="uno" value="Ejercicio 5" onclick="ejercicio5()">
+
+        </div>
+    </form>
+</body>
+</html>

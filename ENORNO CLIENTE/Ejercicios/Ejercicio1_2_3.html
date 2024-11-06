@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style type='text/css'>
+        body {
+            font-family: 'Kite One', sans-serif;
+        }
+
+        div {
+            border-style: solid;
+            border-width: 2px;
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .uno {
+            line-height: 30px;
+        }
+    </style>
+    <script>
+        function ejercicio1() {
+            alert("I am = I'm \n I do not = I don't");
+        }
+        function ejercicio2() {
+            let num = document.getElementById("n1").value;
+            console.log(typeof num);
+            if (num==parseInt(num)){
+                alert("Muy bien")
+            } else if (num==parseFloat(num))
+            alert("No puede tener decimales,tiene que ser entero")
+            else
+            alert("FATAL!!! NO PUEDE TENER LETRAS")
+        }
+        function ejercicio3() {
+            let num2 = document.getElementById("n2").value;
+            let num3 = document.getElementById("n3").value;
+            let oper = document.getElementById("oper").value;
+            if(num2=="" || num3=="" || oper=="" ){
+            alert("No puede quedarse vacio");
+            return;
+            }
+            if (num2!=parseFloat(num2) || num3!=parseFloat(num3)){
+            alert("No es un numero");
+            return;
+            }
+            if (oper !="+" && oper !="-" && oper !="*" && oper !="/"){
+            alert("No es una de las operaciones pedidas");
+            return;
+            }
+            
+            let resultado;
+            num2 = parseFloat(num2);
+            num3 = parseFloat(num3);
+
+            switch (oper) {
+                case "+": 
+                    resultado = num2 + num3;
+                    break;
+                case "-":
+                    resultado = num2 - num3;
+                    break;
+                case "*":
+                    resultado = num2 * num3;
+                    break;
+                case "/":
+                    if (num3 === 0) {
+                        alert("No se puede dividir entre 0");
+                    return;
+            }
+            resultado = num2 / num3;
+            break;
+    }
+
+    document.getElementById("res").value=resultado;
+}
+    function ejercicio4() {
+        let num;
+        let suma=0;
+        let fin="fin";
+       while(num!=fin){
+         num = document.getElementById("n4").value;
+            if(!isNaN(num)){
+            suma+=parseInt(num);
+            return;
+            }
+        }
+        alert(suma);
+        return;
+    }
+    </script>
+
+</head>
+
+<body>
+    <form>
+        <input type="reset" value="BORRAR">
+        <div>
+            <br>
+            <input type="button" class="uno" value="Ejercicio 1" onclick="ejercicio1()">
+            <br> <br>
+        </div>
+        <div>
+            <br> Introduce un N&uacute;mero entero <input type="text" id="n1" size="10"></p>
+            <input type="button" class="uno" value="Ejercicio 2" onclick="ejercicio2()">
+            <br> <br>
+        </div>
+        <div>
+            Introduce dos n&uacute;meros
+            <br>
+            <p>N&uacute;mero 1 <input type="text" id="n2" size="8"></p>
+            <p>N&uacute;mero 2 <input type="text" id="n3" size="8"></p>
+            Introduce la operaci&oacute;n a ejecutar
+            <input type="text" id="oper" size="3"></p>
+            <p>Resultado <input type="text" id="res" size="8" readonly="readonly"></p>
+            <input type="button" class="uno" value="Ejercicio 3" onclick="ejercicio3()">
+
+        </div>
+        <div>
+            Introduce n&uacute;meros enteros hasta que pongas FIN:
+            <input type="text" id="n4" size="8">
+            <br><br>
+            
+        <br>
+        <p>Resultado: <input type="text" id="resul" size="8" readonly="readonly"></p>
+        <br>
+        <input type="button" class="uno" value="Introducir" onclick="ejercicio4()">
+        </div>
+    </form>
+</body>
+</html>

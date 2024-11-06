@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+texto = 'Como Me Molan Las Patatas';
+let re1=/[MPT]/;
+alert (texto.search(re1)); // 5
+let re4=/[MPT]/gi;
+alert (texto.search(re4)); // 2
+let re2=/[MPT]/i;
+alert (texto.search(re2)); // 2
+let re3=/[xyz]/i;
+alert (texto.search(re3)); // -1
+    </script>
+</body>
+</html>
