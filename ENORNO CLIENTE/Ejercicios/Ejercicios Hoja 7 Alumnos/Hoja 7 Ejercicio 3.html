@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salas de Cine</title>
+</head>
+<script type="text/javascript">
+    function cargar() {
+        let num = prompt("¿Cuántas salas de cine quieres?");
+        if (num <= 0) { 
+            alert("No ingresaste un número válido de salas.");
+            return;
+        } 
+        const fil = num;
+		const col = 5;
+        const tabla =new Array(fil);
+			for (let i = 0; i < fil; i++) {
+				tabla[i] = new Array(col);
+			}
+
+            for (let i=0;i<fil;i++)
+	            for (let j=0;j<col;j++){
+		        tabla[i][j]=Math.floor(Math.random() * 101);
+		        }    
+                
+        let diaSemana = ["", "L", "M", "X", "J", "V", "Total"];
+        let codigo='<table border=1>';
+            for (let i=0;i<fil;i++){
+            codigo+='<tr>'
+                for (let j=0;j<col;j++){
+                    codigo+='<td>'+diaSemana+'</td>' ;
+                }
+            }
+            for (let i=0;i<fil;i++){
+	        codigo+='<tr> ';
+	            for (let j=0;j<col;j++){
+		        codigo+='<td>'+tabla[i][j]+'</td>' ;
+		        }
+	        codigo+='</tr>';
+	        }
+        codigo+='</table>';
+
+        document.getElementById("div1").innerHTML = codigo;
+    }
+</script>
+<body onload="cargar()">
+    <div id="div1"></div>
+</body>
+</html>
