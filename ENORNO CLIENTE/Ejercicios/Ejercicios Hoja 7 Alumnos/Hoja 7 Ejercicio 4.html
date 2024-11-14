@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+table{
+	background-color: #F7F793;
+	border: 1px solid #75756A;
+	width:300px;
+	text-align: center;
+	margin: auto;
+	box-shadow: 5px 5px 12px #F5F5DC;
+	font-size: 20px;
+	font-family: 'Indie Flower', cursive;
+}
+td{
+	border: 1px solid red;
+	width: 21px;
+}
+
+ </style>
+<body>
+ 
+<div>
+ <input type="button" value=1 onclick="buscar(this.value)"> 
+	 <input type="button" value=2 onclick="buscar(this.value)"> 
+	 <input type="button" value=3 onclick="buscar(this.value)"><br> 
+ <input type="button" value=4 onclick="buscar(this.value)"> 
+	 <input type="button" value=5 onclick="buscar(this.value)"> 
+	 <input type="button" value=6 onclick="buscar(this.value)"> <br> 
+ <input type="button" value=7 onclick="buscar(this.value)"> 
+	 <input type="button" value=8 onclick="buscar(this.value)"> 
+	 <input type="button" value=9 onclick="buscar(this.value)"> <br> 
+ <input type="button" value=0 onclick="buscar(this.value)">  
+</div>
+<body onload="cargar()">
+<div id="div1">
+</div>
+</body>
+<div id="div2">
+</div>
+</body>
+<script type="text/JavaScript">
+	function cargar(){
+	const fil=4;
+	const col=4;
+	const tabla =new Array(fil);
+	const asteriscos =new Array(fil);
+
+	for (let i=0;i<fil;i++){
+		tabla[i]=new Array(col);
+	}
+
+	for (let i=0;i<fil;i++){
+		asteriscos[i]=new Array(col);
+	}
+
+	for (let i=0;i<fil;i++)
+		for (let j=0;j<col;j++){
+			tabla[i][j]= Math.floor(Math.random() * 10);
+			asteriscos[i][j]="**";
+		} 
+
+	let codigo='<table border=1> ';
+	for (let i=0;i<fil;i++){
+		codigo+='<tr> ';
+		for (let j=0;j<col;j++){
+			codigo+='<td>'+asteriscos[i][j]+'</td>' ;
+		}
+		codigo+='</tr>';
+	}
+	codigo+='</table>';
+	document.getElementById("div1").innerHTML=codigo;
+}
+
+</script>
+</html>

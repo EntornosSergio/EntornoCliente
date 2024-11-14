@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salas de Cine</title>
+</head>
+<script type="text/javascript">
+    function cargar() {
+        let num = prompt("¿Cuántas salas de cine quieres?");
+        if (num <= 0 || isNaN(num)) { 
+            alert("No ingresaste un número válido de salas.");
+            return;
+        } 
+        const fil = parseInt(num); // Convertir a número entero
+        const col = 7;
+        
+        // Crear una matriz para almacenar los valores de la tabla
+        const tabla = new Array(fil);
+        for (let i = 0; i < fil; i++) {
+            tabla[i] = new Array(col);
+        }
+
+        // Llenar la tabla con valores aleatorios
+        for (let i = 0; i < fil; i++) {
+            tabla[i][5]=0;
+            for (let j = 0; j < 5; j++) {
+                tabla[i][j] = Math.floor(Math.random() * 101); // Valor entre 0 y 100
+                tabla[i][5]+= tabla[i][j] 
+            }
+        }
+        // Encabezado de días de la semana
+        let diaSemana = ["Sala", "L", "M", "X", "J", "V", "Total"];
+
+        // Generar el código HTML de la tabla
+        let codigo = '<table border="1">';
+        
+        // Crear encabezado de la tabla
+        codigo += '<tr>';
+        for (let j = 0; j < col; j++) {
+            codigo += '<th>' + diaSemana[j] + '</th>';
+        }
+        codigo += '</tr>';
+
+        // Crear las filas de datos
+        for (let i = 0; i < fil; i++) {
+            codigo += '<tr><td>Sala ' + (i + 1) + '</td>';
+            for (let j = 0; j < 6; j++) {
+                codigo += '<td>' + tabla[i][j] + '</td>';
+            }
+            codigo += '</tr>';
+        }
+        
+        codigo += '</table>';
+
+        // Insertar la tabla en el div
+        document.getElementById("div1").innerHTML = codigo;
+    }
+</script>
+<body onload="cargar()">
+    <div id="div1"></div>
+</body>
+</html>
