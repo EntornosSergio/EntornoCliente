@@ -49,6 +49,7 @@
         const upper = document.getElementById("upper");
         const special = document.getElementById("special");
         const caracteres = document.getElementById("longitud");
+        const mensaje = document.getElementById("message");
         
         function validarContraseña(){
             const valor = contraseña.value;
@@ -65,7 +66,19 @@
             actualizarIndicador(special, tieneEspecial.test(valor));
             actualizarIndicador(caracteres,tiene8Caracteres);
 
+
+        if (tieneDigito.test(valor) == true && tieneMinuscula.test(valor) == true 
+        && tieneMayuscula.test(valor) == true && tieneEspecial.test(valor) == true
+        && tiene8Caracteres == true){
+            mensaje.textContent = "Correcto!!";
+            mensaje.style.color = "green";
+        } else{
+            mensaje.textContent= "La contraseña debe tener al menos 8 caracteres, incluyendo dígitos, letras minúsculas, mayúsculas y caracteres especiales.";
+            mensaje.style.color = "red";
         }
+        }
+
+       
 
 
         function actualizarIndicador(indicador, esValido) {
