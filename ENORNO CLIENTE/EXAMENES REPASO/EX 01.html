@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EXAMEN EJERCICIO 1</title>
+    <link rel="stylesheet" type="text/css" href="stylepoli.css">    
+    <style type="text/css">
+        body {
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            color: #210B61;
+            font-size: 10pt;
+        }
+        div {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #central, #abajo {
+            text-align: center;
+        }
+        #pos1 {
+            position: relative;
+            background-color: #F5DA81;
+        }
+        table {
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+        }
+        td {
+            font-size: 12px;
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            border: 1px solid black;
+            cursor: pointer;
+            background-color: white;
+        }
+        .seleccionada {
+            background-color: #66cc66; /* Verde cuando se selecciona */
+        }
+
+    </style>
+
+    <script>
+        let tarifaSeleccionada = null;
+        function calcularprecio() {
+            const diaInput = document.getElementById("dd"); 
+            const mesInput = document.getElementById("mm"); 
+            const añoInput = document.getElementById("aaaa");
+
+            const dia = Number(diaInput.value); 
+            const mes = Number(mesInput.value); 
+            const año = Number(añoInput.value); 
+
+            // Validación de la fecha
+            if (dia < 1 || dia > 31) {
+                alert("Error con los días");
+                diaInput.focus(); 
+                return; 
+            }
+
+            if (mes < 1 || mes > 12) {
+                alert("Error con los meses");
+                mesInput.focus(); 
+                return; 
+            }
+
+            if (año < 1900) {
+                alert("Error, el año es menor a 1900");
+                añoInput.focus(); 
+                return; 
+            }
+            let fechaHoy = new Date();
+            if (año > fechaHoy.getFullYear()) {
+                alert("Error, la fecha es mayor a la del sistema");
+                return;
+            }
+            // CALCULAR LA EDAD
+            let edad = fechaHoy.getFullYear() - año;
+
+            if (fechaHoy.getMonth() + 1 < mes || (fechaHoy.getMonth() + 1 === mes && fechaHoy.getDate() < dia)) {
+                edad--;
+            }
+            
+            if (edad < 14 || edad > 80) {
+                alert("ERROR, la fecha debe de estar entre los 14 y 80 años");
+                return;
+            }
+
+            document.getElementById("edad").value = edad;
+
+            const tarifa=marcar();
+            if (tarifa === null) {
+                alert("Por favor selecciona una tarifa.");
+                return;
+            }
+            alert(tarifa);
+
+        }
+        
+        function marcar(){
+            const uno=document.getElementById("uno");
+            const dos=document.getElementById("dos");
+            const tres=document.getElementById("tres");
+            const cuatro=document.getElementById("cuatro");
+            const cinco=document.getElementById("cinco");
+
+            
+            //uno.style.backgroundColor="green";
+
+            uno.addEventListener("click", () => {
+                dos.classList.remove("seleccionada");
+                tres.classList.remove("seleccionada");
+                cuatro.classList.remove("seleccionada");
+                cinco.classList.remove("seleccionada");
+
+                uno.classList.add("seleccionada");
+                x=20;
+                return x;
+            });
+
+            dos.addEventListener("click", () => {
+                uno.classList.remove("seleccionada");
+                tres.classList.remove("seleccionada");
+                cuatro.classList.remove("seleccionada");
+                cinco.classList.remove("seleccionada");
+
+                dos.classList.add("seleccionada");
+                return 30;
+            });
+
+            tres.addEventListener("click", () => {
+                uno.classList.remove("seleccionada");
+                dos.classList.remove("seleccionada");
+                cuatro.classList.remove("seleccionada");
+                cinco.classList.remove("seleccionada");
+
+                tres.classList.add("seleccionada");
+                return 40;
+            });
+
+            cuatro.addEventListener("click", () => {
+                uno.classList.remove("seleccionada");
+                dos.classList.remove("seleccionada");
+                tres.classList.remove("seleccionada");
+                cinco.classList.remove("seleccionada");
+
+                cuatro.classList.add("seleccionada");
+                return 30;
+            });
+
+            cinco.addEventListener("click", () => {
+                uno.classList.remove("seleccionada");
+                dos.classList.remove("seleccionada");
+                tres.classList.remove("seleccionada");
+                cuatro.classList.remove("seleccionada");
+
+                cinco.classList.add("seleccionada");
+                return 60;
+            });
+             
+        }
+      
+    </script>
+
+</head>
+<body>
+    <h1>POLIDEPORTIVO LEGANES SPORT</h1>
+    <div id="central">
+        <fieldset id="pos1">
+            Calculamos el precio mensual de tu carnet como socio en nuestro polideportivo.
+            Indica tu fecha de nacimiento y el uso que harías de él.
+        </fieldset>
+    </div>
+    <br>
+    <div id="abajo">
+        <form name="form1">
+            <label>Fecha nacimiento</label>
+            <input type="text" id="dd" placeholder="dd" style='text-align:center;' size=3> 
+            <input type="text" id="mm" placeholder="mm" style='text-align:center;' size=3> 
+            <input type="text" id="aaaa" placeholder="aaaa" style='text-align:center;' size=5> 
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp EDAD  
+            <input type="text" id="edad" size=3 readonly>  
+
+            <!--CHECKED PARA QUE EMPIECE EN NO Y HAY QUE DARLE UN NOMBRE A CADA UNO PARA
+            PODER ELEGIR ENTRE SI Y NO-->
+            <label>Empadronado en Leganés </label><br>
+            <input type="radio" name="empadronado"> SÍ
+            <input type="radio" name="empadronado" checked> NO<br><br>
+
+            <label>Familia numerosa </label><br>
+            <input type="radio" name="familiaNumerosa"> SÍ
+            <input type="radio" name="familiaNumerosa" checked> NO
+            <br><br>
+
+            <label>TARIFAS:Clica la que te interesa</label>
+            <table>
+                <tr>
+                <td onclick="marcar()" id="uno">1 hora semanal de L a V <b>20€</b></td>
+                <td onclick="marcar()" id="dos">2 horas semanales de L a V <b>30€</b></td>
+                <td onclick="marcar()" id="tres">4 horas semanales de L a V <b>40€</b></td>
+                <td onclick="marcar()" id="cuatro" >Fines de Semana <b>30€</b></td>
+                <td onclick="marcar()" id="cinco">Entrada libre todos los días <b>60€</b></td>
+                </tr>
+                </table>
+
+            <hr> 
+            <label>Descuentos:</label> 
+            Menores de 18 años: 20%
+            <br>Mayores de 65 años: 30%
+            <br>Familia numerosa: 5€
+            <br>Empadronado en Leganés: 50% (este descuento anula los anteriores)
+            <br><br> 
+
+            <input type="button" value="CALCULAR PRECIO" onclick="calcularprecio()">
+            <input type="text" id="precio" size=2 readonly>
+        </form>
+    </div>
+</body>
+</html>

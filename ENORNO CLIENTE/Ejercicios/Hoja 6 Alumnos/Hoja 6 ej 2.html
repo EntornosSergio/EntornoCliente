@@ -9,17 +9,15 @@
    
 <script>
 function cambiar(x){
-        imagen.style.filter="grayscale(100%)"
-        
+        imagen.style.filter="grayscale(100%)";
 }
 function volver(x){
-        imagen.style.filter=""
-        
+        imagen.style.filter="";
 }
 </script>
 </head>
 <body>
-<a href="https://www.yobingo.es/" onclick="return window.confirm('Estas seguro que quieres acceder')">Juguemos al Bingo</a>
+<a href="https://www.yobingo.es/">Juguemos al Bingo</a>
 <img src="garfield.jpg" width="300" height="300" onmouseover="cambiar(this)" onmouseleave="volver(this)" id="imagen"> <input type="button" value="PULSAME">
 </body>
 </html>
