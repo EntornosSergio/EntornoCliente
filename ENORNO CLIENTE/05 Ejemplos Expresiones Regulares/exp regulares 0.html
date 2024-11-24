@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        // 		EJEMPLO 0 
+        
+        let cad1 = 'Me mola mucho';
+        {
+            let re = /m/;
+
+            const texto = "Hola mundo";
+            const regexConI = /hola/i;
+            const regexSinI = /hola/;
+            console.log(texto.match(regexConI));  // ["Hola"]
+            console.log(texto.match(regexSinI)); // null
+
+            console.log(re.test(cad1)); // true 
+            console.log(cad1.match(re)); // m
+            console.log(cad1.search(re)); // 3
+        }
+        {
+            let re = /m/g;
+            console.log(re.test(cad1)); // true 
+            console.log(cad1.match(re)); // m,m
+            console.log(cad1.search(re)); // 3 
+        }
+        {
+            let re = /m/gi;
+            console.log(re.test(cad1)); // true 
+            console.log(cad1.match(re)); // M,m,m
+            console.log(cad1.search(re)); // 0 
+        }
+        
+            // CUIDADO!! 
+            let re = /m/g;
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // false 
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // true 
+            console.log(re.test(cad1)); // false
+        
+        
+    
+            let re1 = new RegExp ('mola');
+            let re2 = /patata/;
+            let r3 = /molo/;
+            let texto = 'como me molan las patatas';
+            alert (re2.test(texto)); // true
+            alert (re1.test(texto)); // true
+            alert (r3.test(texto)); 
+
+            alert (texto.match(re2)) // patata
+            alert (texto.match(/pan/)) // null
+
+
+{
+            texto = 'Como Me Molan Las Patatas';
+            let r1=/[MPT]/;
+            alert (texto.search(r1)); // 5
+            let r2=/[MPT]/i;
+            alert (texto.search(r2)); // 2
+            let rr2=/[MPT]/g;
+            alert (texto.search(rr2)); // 5
+            let re3=/[xyz]/i;
+            alert (texto.search(re3)); // -1
+        }
+
+        {
+            texto = 'Como Me Molan Las Patatas';
+            let re1=/[MPT]/;
+            alert (texto.replace(re1,'*')); // 'Como *e Molan Las Patatas'
+            let re3=/[MPT]/i;
+            alert (texto.replace(re3,'*')); // 'Co*o Me Molan Las Patatas'
+            let re4=/[MPT]/g;
+            alert (texto.replace(re4,'*')); // 'Como *e *olan Las *atatas'
+            let re2=/[MPT]/gi;
+            alert (texto.replace(re2,'*')); // 'Co*o *e *olan Las *a*a*as'
+        }
+
+</script>
+</head>
+
+<body>
+</body>
+
+</html>

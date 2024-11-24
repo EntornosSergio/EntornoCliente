@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <script>
+        function base(){
+            //tipos de variables
+            let a = 32;
+            console.log("32:"+typeof(a)); //number
+
+            let b = "32";
+            console.log("\"32\":"+typeof(b)); //string
+
+            let c = "texto";
+            console.log("\"texto\":"+typeof(c)); //string
+
+            let d = null;
+            console.log("\"null\":"+typeof(d)); //object
+
+            let e = true;
+            console.log("true:"+typeof(e)); //boolean
+
+            let f = "true";
+            console.log("\"true\":"+typeof(f)); //string
+
+            //conversiones de números
+            let x="103.45";
+            console.log("\"Number\":"+Number(x)); //103.45
+            console.log("\"parseInt\":"+parseInt(x)); //103
+            console.log("\"parseFloat\":"+parseFloat(x)); //103.45
+            console.log("\"isNaN\":"+isNaN(x)); //false
+
+            var y="103.45p";
+            console.log("\"Number\":"+Number(y)); //NaN
+            console.log("\"parseInt\":"+parseInt(y)); //103
+            console.log("\"parseFloat\":"+parseFloat(y)); //103.45
+            console.log("\"isNaN\":"+isNaN(y)); //true
+
+            //operaciones
+            let m = null;
+            let n = 3;
+            let o = "3";
+            let p;
+            console.log("null+3:"+(m+n)); //3
+            console.log("3+3:"+(3+3)); //6
+            console.log("3+\"3\":"+(n+o)); //33
+            console.log(n+p); //NaN
+        }
+
+        //variables locales y globales
+
+        let variable = 9;
+        console.log("Antes de pasar por la función: "+variable); //9
+        x();
+        console.log("Después de pasar por la función: "+variable); //10
+
+        function x(){
+            variable=10;
+            console.log("Dentro de la función: "+variable); //10
+        }
+    </script>
+    <body onload="base()">
+    
+    </body>
+</html>
