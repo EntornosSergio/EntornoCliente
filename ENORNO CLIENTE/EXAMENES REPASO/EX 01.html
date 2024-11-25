@@ -45,6 +45,7 @@
 
     <script>
         let tarifaSeleccionada = null;
+        let tarifa=0;
         function calcularprecio() {
             const diaInput = document.getElementById("dd"); 
             const mesInput = document.getElementById("mm"); 
@@ -91,76 +92,22 @@
 
             document.getElementById("edad").value = edad;
 
-            const tarifa=marcar();
-            if (tarifa === null) {
+            const x=marcar(td,valor);
+            if (x === null) {
                 alert("Por favor selecciona una tarifa.");
                 return;
             }
-            alert(tarifa);
+            alert(x);
 
         }
         
-        function marcar(){
-            const uno=document.getElementById("uno");
-            const dos=document.getElementById("dos");
-            const tres=document.getElementById("tres");
-            const cuatro=document.getElementById("cuatro");
-            const cinco=document.getElementById("cinco");
-
-            
-            //uno.style.backgroundColor="green";
-
-            uno.addEventListener("click", () => {
-                dos.classList.remove("seleccionada");
-                tres.classList.remove("seleccionada");
-                cuatro.classList.remove("seleccionada");
-                cinco.classList.remove("seleccionada");
-
-                uno.classList.add("seleccionada");
-                x=20;
-                return x;
-            });
-
-            dos.addEventListener("click", () => {
-                uno.classList.remove("seleccionada");
-                tres.classList.remove("seleccionada");
-                cuatro.classList.remove("seleccionada");
-                cinco.classList.remove("seleccionada");
-
-                dos.classList.add("seleccionada");
-                return 30;
-            });
-
-            tres.addEventListener("click", () => {
-                uno.classList.remove("seleccionada");
-                dos.classList.remove("seleccionada");
-                cuatro.classList.remove("seleccionada");
-                cinco.classList.remove("seleccionada");
-
-                tres.classList.add("seleccionada");
-                return 40;
-            });
-
-            cuatro.addEventListener("click", () => {
-                uno.classList.remove("seleccionada");
-                dos.classList.remove("seleccionada");
-                tres.classList.remove("seleccionada");
-                cinco.classList.remove("seleccionada");
-
-                cuatro.classList.add("seleccionada");
-                return 30;
-            });
-
-            cinco.addEventListener("click", () => {
-                uno.classList.remove("seleccionada");
-                dos.classList.remove("seleccionada");
-                tres.classList.remove("seleccionada");
-                cuatro.classList.remove("seleccionada");
-
-                cinco.classList.add("seleccionada");
-                return 60;
-            });
-             
+        function marcar(td,valor){
+            tarifa=valor;
+            todas=document.getElementsByTagName("td");
+            for (i=0;i<todas.length;i++){
+                todas[i].style.backgroundColor="white";
+            }
+            td.style.backgroundColor="green";
         }
       
     </script>
@@ -198,11 +145,11 @@
             <label>TARIFAS:Clica la que te interesa</label>
             <table>
                 <tr>
-                <td onclick="marcar()" id="uno">1 hora semanal de L a V <b>20€</b></td>
-                <td onclick="marcar()" id="dos">2 horas semanales de L a V <b>30€</b></td>
-                <td onclick="marcar()" id="tres">4 horas semanales de L a V <b>40€</b></td>
-                <td onclick="marcar()" id="cuatro" >Fines de Semana <b>30€</b></td>
-                <td onclick="marcar()" id="cinco">Entrada libre todos los días <b>60€</b></td>
+                    <td onclick="marcar(this,20)" id="uno">1 hora semanal de L a V <b>20€</b></td>
+                    <td onclick="marcar(this,30)" id="dos">2 horas semanales de L a V <b>30€</b></td>
+                    <td onclick="marcar(this,40)" id="tres">4 horas semanales de L a V <b>40€</b></td>
+                    <td onclick="marcar(this,30)" id="cuatro" >Fines de Semana <b>30€</b></td>
+                    <td onclick="marcar(this,60)" id="cinco">Entrada libre todos los días <b>60€</b></td>
                 </tr>
                 </table>
 

@@ -7,38 +7,43 @@
     <title>Recuperación FORMULARIOS</title>
     <link rel="stylesheet" href="main.css">
     <style type="text/css">
-        #otro {
+        /*#otro {
             display: none;
-        }
+        }*/
     </style>
 </head>
 <script>
     function calcular() {
         const programacion=document.getElementById("prog");
-        const mysql=Number(document.getElementById("sql").value);
+        const mysql=document.getElementById("sql");
         const diseño=document.getElementById("web");
         const selprog = Number(document.getElementById("selprog").value);
         const selweb = Number(document.getElementById("selweb").value);
         let semanas=0;
+        let suma=0;
         if (programacion.checked == 0 && mysql.checked == 0 && diseño.checked == 0){
             alert("No se ha seleccionado ningun curso de certificado");
             return;
-        } else if (programacion.checked == 1){
-            semanas=+3;
-            if (selprog == 0){
+        } 
+        if (programacion.checked){
+            if (selprog === 0){
                 alert("No has elegido una de programacion");
             return;
             }
+            semanas+=3;
+            suma+=selprog;
         }
-        if (diseño.checked == 1){
-            semanas=+2;
-            if (selweb == 0){
+        if (diseño.checked){
+            if (selweb === 0){
                 alert("No has elegido una de diseño web");
             return;
             }
+            semanas+=2;
+            suma+=selweb;
         }
-        if (mysql.checked == 1){
-            semanas+=3;
+        if (mysql.checked){
+            semanas+= 3;
+            suma += Number(mysql.value); 
         }
         
         const fecha= document.getElementById("fec").value;
@@ -54,16 +59,33 @@
             return;
         }
         
-        const suma = selprog+mysql+selweb;
+        document.getElementById("precio").value=suma + "€";
 
-        document.getElementById("precio").value=suma;
-
-        document.getElementById("duracion").value=semanas+" semanas";
+        document.getElementById("duracion").value= semanas +" semanas";
     }
     function comprobar_tfno(e) {
+        const regexTel=/^\(\d{3}\)-\d{3}-\d{3}$/;
+        const tel=document.getElementById("telefono");
+        if (!tel.value.match(regexTel)){
+            e.style.background = '#FADBD8';
+            tel.value="Telefono erroneo";
+        } else{
+            alert("Telefono bien escrito");
+        }
     }
     function comprobar_codigo(e) {
+        const regex = /^[BCDFGHJKLMNPQRSTVWXYZ]{3}\d{2,5}$/;
+        const codigo=document.getElementById("codigo");
+        if (!codigo.value.match(regex)){
+            e.style.background = '#FADBD8';
+            codigo.value="Codigo erroneo";
+        } else{
+            alert("Contraseña bien escrita");
+        }
     }
+    function cambiarColor(e) {
+			e.style.background = '#FDEBD0';
+		}
 
 </script>
 
@@ -100,8 +122,8 @@
     </div>
     <hr>
     <div id="otro">
-        Si dispones de un código descuento indícalo: <input type="text" id="codigo" size=10>
-        Teléfono de contacto: <input type="text" id="codigo" size=12 placeholder="(XXX)-XXX-XXX">
+        Si dispones de un código descuento indícalo: <input type="text" id="codigo" size=10 onfocus="cambiarColor(this)" onchange="comprobar_codigo(this)">
+        Teléfono de contacto: <input type="text" id="telefono" size=12 placeholder="(XXX)-XXX-XXX" onfocus="cambiarColor(this)" onchange="comprobar_tfno(this)">
     </div>
 </body>
 
