@@ -44,7 +44,6 @@
     </style>
 
     <script>
-        let tarifaSeleccionada = null;
         let tarifa=0;
         function calcularprecio() {
             const diaInput = document.getElementById("dd"); 
@@ -92,12 +91,13 @@
 
             document.getElementById("edad").value = edad;
 
-            const x=marcar(td,valor);
-            if (x === null) {
-                alert("Por favor selecciona una tarifa.");
-                return;
+            let cantidad=tarifa;
+
+            if (edad < 18){
+                cantidad=cantidad*0.8;
             }
-            alert(x);
+
+            document.getElementById("precio").value=cantidad;
 
         }
         
