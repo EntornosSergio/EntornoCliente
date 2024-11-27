@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva</title>
+    <script>
+        window.onload = function () {
+            let contador = 10;
+            const intervalo = setInterval(function () {
+                document.body.innerHTML = `<h1>${contador}</h1>`; 
+                contador--;
+
+                if (contador < 0) {
+                    clearInterval(intervalo);
+                    document.body.innerHTML = '<img src="https://via.placeholder.com/300" alt="¡Tiempo terminado!">'; // Mostrar imagen
+                }
+            }, 1000); 
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
