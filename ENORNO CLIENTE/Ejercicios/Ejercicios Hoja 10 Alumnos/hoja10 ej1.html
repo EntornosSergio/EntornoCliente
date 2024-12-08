@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>DOM</title>
+	<link rel="stylesheet" href="main.css">
+
+	<style type="text/css">
+		#div1 {
+			width: 700px;
+			height: 600px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		#pos1,
+		#pos2 {
+			position: relative;
+			float: left;
+		}
+	</style>
+
+	<script>
+		function limpiar() {
+			for (i = 0; i < document.forms.length - 1; i++) {
+				for (j = 0; j < document.forms[i].elements.length; j++) {
+					document.forms[i].elements[j].value = 0
+				}
+			}
+		}
+
+		function peligro() {
+			var parrafos = document.getElementsByTagName("h3");
+			for (i = 0; i < parrafos.length; i++)
+				parrafos[i].innerHTML = "¡PELIGRO!";
+		}
+		function cambiarparrafos() {
+			var selectedColor = document.getElementById("color").value;
+			var paragraphs = document.getElementsByTagName("p");
+			for (var i = 0; i < paragraphs.length; i++) {
+				paragraphs[i].style.color = selectedColor;
+			}
+		}
+		function intercambiar() {
+			var link = document.getElementsByTagName("a");
+			for (i = 0; i < link.length; i++) {
+				link[i].href = "http://www.youtube.com/";
+				link[i].textContent = "Youtube";
+			}
+		}
+		function ocultar() {
+			var parrafos = document.getElementsByName("ocultable");
+			for (var i = 0; i < parrafos.length; i++) {
+				parrafos[i].style.display = "none";
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="div1">
+		<fieldset id="pos1">
+			<h3> FORMULARIO UNO </h3>
+			<p>Este párrafo es el primero</p>
+			<form name="form1">
+				Un campo <input type="text" name="campo1" value="20"> <br>
+				Otro campo <input type="text" name="campo2" value="40">
+				<br>
+				Y otro más<input type="text" name="campo3" value="50">
+				<br><br>
+			</form>
+
+			<h3> FORMULARIO DOS </h3>
+			<form name="form3">
+				Un campo <input type="text" name="ocultable">
+				<br>
+				Otro campo <input type="text" name="campo5">
+				<br>
+				Y otro más<input type="text" name="ocultable">
+			</form>
+			<p>Este párrafo es el segundo</p>
+		</fieldset>
+		<fieldset id="pos2">
+			<p>PRIMERO
+				<br> <a href="http://www.google.es/"> Google </a>
+				<br> <a href="http://www.elpais.es/"> El País </a>
+			</p>
+			No párrafo
+			<p>SEGUNDO
+				<br> <a href="http://www.marca.es/"> Marca </a>
+		</fieldset>
+		<fieldset id="pos3">
+			<h3> FORMULARIO CAMBIOS </h3>
+			<p>Este párrafo es el de cambios</p>
+			<form name="form2">
+				<input type="button" value="limpiar" onclick="limpiar()">
+				<input type="button" value="peligro" onclick="peligro()">
+				<select id="color" onchange="cambiarparrafos()">
+					<option value="green">green</option>
+					<option value="blue">blue</option>
+					<option value="yellow">yellow</option>
+				</select>
+				<br><br><input type="button" value="cambiar links" onclick="intercambiar()">
+				<input type="button" value="ocultar ocultables" onclick="ocultar()">
+			</form>
+		</fieldset>
+	</div>
+</body>
+
+</html>

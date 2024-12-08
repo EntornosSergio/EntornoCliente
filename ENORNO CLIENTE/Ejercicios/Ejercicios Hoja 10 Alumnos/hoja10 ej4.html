@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Galería de Imágenes</title>
+	<style type="text/css">
+		body {
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+		}
+
+		div {
+			width: 600px;
+			margin-right: auto;
+			margin-left: auto;
+			padding: 20px;
+		}
+	</style>
+	<script type="text/javascript">
+		let galeria = []; // Rutas de las imágenes
+		let z = 0; //
+
+		function cargar() {
+			galeria = [
+				"pokemon/Bulbasaur.png",
+				"pokemon/Ivysaur.png",
+				"pokemon/Venusaur.png",
+				"pokemon/Charmander.png",
+				"pokemon/Charmeleon.png",
+				"pokemon/Charizard.png",
+				"pokemon/Squirtle.png",
+				"pokemon/Wartortle.png",
+				"pokemon/Blastoise.png"
+			];
+
+			mostrarImagen();
+			resaltarMiniatura();
+		}
+
+		function ocultarResaltado() {
+			const miniaturas = document.querySelectorAll("#miniaturas img");
+			miniaturas.forEach(item => {
+				item.style.border = ""; // Quitar el borde
+				item.style.borderRadius = ""; // Quitar el redondeo del borde
+			});
+		}
+
+		function resaltarMiniatura() {
+			ocultarResaltado(); // Limpiar resaltado previo
+			const miniaturas = document.querySelectorAll("#miniaturas img")
+			//esto es otra manera de hacerlo sin el #miniaturas img
+			//# indica un ID, por lo que #miniaturas selecciona específicamente el elemento con id="miniaturas".
+			//El espacio seguido de img selecciona todas las etiquetas <img> dentro del elemento #miniaturas.
+			//const contenedor = document.getElementById("miniaturas");
+			//const miniaturas = contenedor.querySelectorAll("img");
+
+			if (miniaturas[z]) {
+				miniaturas[z].style.border = "3px solid orange"; // Aplicar borde
+				miniaturas[z].style.borderRadius = "5px"; // Bordes redondeados
+			}
+		}
+
+		function mostrarImagen() {
+			const contenedor = document.getElementById("foto");
+
+			// Elimina cualquier imagen(si la hay)
+			while (contenedor.firstChild) {
+				contenedor.removeChild(contenedor.firstChild);
+			}
+
+			// Crea una nueva etiqueta 
+			const img = document.createElement("img");
+
+			// pone la imagen
+			img.src = galeria[z];
+
+			// pone el texto en la imagen
+			img.alt = `Imagen ${z + 1}`;
+
+			// pone el estilo de ancho (100% del contenedor)
+			img.style.maxWidth = "100%";
+
+			// pone la altura automáticamente
+			img.style.height = "auto";
+
+			// pone la nueva imagen al contenedor
+			contenedor.appendChild(img);
+		}
+
+
+		function atras() {
+			if (z > 0) {
+				z--; // va para atras
+				mostrarImagen();
+				resaltarMiniatura();
+			} else {
+				alert("No puedes retroceder más.");
+			}
+		}
+
+		function adelante() {
+			if (z < galeria.length - 1) {
+				z++; // va para alante
+				mostrarImagen();
+				resaltarMiniatura();
+			} else {
+				alert("No puedes avanzar más.");
+			}
+		}
+	</script>
+</head>
+
+<body onload="cargar()">
+	<div id="miniaturas">
+		<img src='pokemon/Bulbasaur.png' height="60" width="60">
+		<img src='pokemon/Ivysaur.png' height="60" width="60">
+		<img src='pokemon/Venusaur.png' height="60" width="60">
+		<img src='pokemon/Charmander.png' height="60" width="60">
+		<img src='pokemon/Charmeleon.png' height="60" width="60">
+		<img src='pokemon/Charizard.png' height="60" width="60">
+		<img src='pokemon/Squirtle.png' height="60" width="60">
+		<img src='pokemon/Wartortle.png' height="60" width="60">
+		<img src='pokemon/Blastoise.png' height="60" width="60">
+		<br><br>
+
+		<input type="button" value="Atrás" onclick="atras()">
+		<input type="button" value="Adelante" onclick="adelante()">
+	</div>
+	<div id="foto"></div>
+</body>
+
+</html>

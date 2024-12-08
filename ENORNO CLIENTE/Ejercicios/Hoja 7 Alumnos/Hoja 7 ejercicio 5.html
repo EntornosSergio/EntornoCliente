@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type='text/css'>
+        body {
+            font-family: 'Kite One', sans-serif;
+        }
+
+        #div1 {
+            width: 250px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 20pt;
+        }
+
+        table {
+            background-color: #EFF2FB;
+            text-align: center;
+            border-radius: 30px;
+            width: 250px;
+            padding: 5px;
+            border: 1px solid #D0A9F5;
+            font-family: 'Cherry Swash', cursive;
+            margin-top: 300px;
+        }
+
+        #dias {
+            background-color: #D0A9F5;
+        }
+
+        td {
+            border: 1px solid #D0A9F5;
+            height: 70px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <p id="resultado"></p>
+</body>
+<script>
+
+    function buscarpos(n) {
+        let numeros = lista.split(",");
+        let num = "" + n + "";
+        console.log(num);
+        if (numeros.includes(num))
+            return false;
+        else
+            return true;
+
+    }
+
+
+    window.onload = function cargar() {
+        fil = 3;
+        col = 3;
+        tabla = new Array(fil);
+        for (let i = 0; i < fil; i++)
+            tabla[i] = new Array(col);
+
+        let n = 0
+        lista = "";
+        let validar = false;
+        for (let i = 0; i < fil; i++)
+            for (let j = 0; j < col; j++) {
+                while (validar != true) {
+                    n = Math.floor(Math.random() * 9) + 1;
+                    validar = buscarpos(n);
+                }
+                tabla[i][j] = n;
+                lista += n + ",";
+                validar = false;
+            }
+        table = document.createElement('table');
+
+
+        console.log(tabla);
+        let codigo = '<table border=1 id="tabla"> ';
+        let cont = 0;
+        for (let i = 0; i < fil; i++) {
+            codigo += '<tr> ';
+            for (let j = 0; j < col; j++) {
+                codigo += '<td onclick="verificar(this)">' + tabla[i][j] + '</td>';
+                cont++;
+            }
+            codigo += '</tr>';
+        }
+        codigo += '</table>';
+        document.getElementById("div1").innerHTML = codigo;
+    }
+    cont = 1;
+    error = 0;
+    function verificar(e) {
+        console.log(e.innerHTML);
+        if (e.innerHTML == cont) {
+            e.style = "background-color:green;"
+            e.onclick = null;
+            cont += 1
+        } else {
+            e.style = "background-color:red;"
+            error += 1;
+        }
+
+        if (cont > 9)
+            document.getElementById("resultado").innerHTML = "ENHORABUENA!! Has tenido " + error + " fallos";
+        document.getElementById("resultado").style = "text-align:center";
+
+    }
+</script>
+
+</html>

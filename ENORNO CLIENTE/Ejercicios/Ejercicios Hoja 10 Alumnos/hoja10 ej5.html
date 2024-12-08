@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DOM</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/JavaScript">
+e=0;
+function conectar() {
+    let usuario=document.getElementById("usu").value;
+    li=document.createElement('li');
+    var texto=document.createTextNode(usuario);
+    li.appendChild(texto);
+    e=document.getElementsByTagName("li");
+    for (let i = 0; i < e.length;i++){
+        if (e[i].textContent ==usuario){
+            alert("Ese usuario ya esta en la lista");
+            return;
+        } 
+    }
+    document.getElementById("ol1").appendChild(li);
+
+}
+function desconectar() {
+    let usuario=document.getElementById("usu").value;
+    for (let i = 0; i < e.length;i++){
+        if (e[i].textContent ==usuario){
+            document.getElementById("ol1").removeChild(e[i]);
+            return;
+        } 
+    }
+}
+</script>
+</head>
+<body>
+    <font face="tahoma" size="6">
+        <div>
+            <p> REALIZANDO CONEXIONES </p>
+            <font face="tahoma" size="4">
+                <form name="miformulario">
+                    Usuario <input type="text" id="usu" size="15">
+                    Contraseña <input type="text" id="con" size="15">
+                    <br><br><br>
+                    <input type="button" value="CONECTAR" onclick="conectar()">
+                    <input type="button" value="DESCONECTAR" onclick="desconectar()">
+                    <br>
+                </form>
+                <ol id="ol1">
+                    <li>Pepe</li>
+                    <li>Ana</li>
+                </ol>
+            </font>
+</body>
+
+</html>
