@@ -1,0 +1,93 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href='http://fonts.googleapis.com/css?family=Kite+One|Cherry+Swash' rel='stylesheet' type='text/css'>
+	<style type='text/css'>
+		body {
+			font-family: 'Kite One', sans-serif;
+		}
+
+		#div1 {
+			width: 250px;
+			margin: auto;
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 20pt;
+		}
+
+		table {
+			background-color: #EFF2FB;
+			text-align: center;
+			width: 250px;
+			border: 1px solid #D0A9F5;
+			font-family: 'Cherry Swash', cursive;
+		}
+
+		.festivo {
+			background-color: #D0A9F5;
+		}
+
+		td {
+			border: 1px solid #D0A9F5;
+		}
+	</style>
+
+
+	<script type="text/javascript">
+		function cargar() {
+			año = window.prompt('Escribe el año', 2022);
+			const primerDia = new Date(año, 11, 1).getDay();
+			alert(primerDia)
+			const dias=31;
+			const col = 7;
+			const fil = Math.ceil((primerDia + dias) / col);
+			const tabla = new Array(fil);
+			for (let i = 0; i < fil; i++)
+				tabla[i] = new Array(col);
+
+			let n = 1;
+			for (let i = 0; i < fil; i++)
+				for (let j = 0; j < col; j++) {
+					if (i == 0 && j < primerDia) {
+						tabla[i][j] = '';
+					}else if (n <= dias){
+						tabla[i][j] = n;
+						n++;
+					}
+					 else {
+						tabla[i][j] = '';
+					}
+				}
+
+			letras = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+			let codigo = '<table border=1> ';
+			codigo += '<tr><td>L</td><td>M</td><td>X</td><td>J</td><td>V</td><td>S</td><td>D</td><tr> ';
+			for (let i = 0; i < fil; i++) {
+				for (let j = 0; j < col; j++) {
+					if (j==col-1 || tabla[i][j] == 6 || tabla[i][j] == 8 || tabla[i][j] == 25 || j==6){
+						codigo += '<td class="festivo">' + tabla[i][j] + '</td>';
+					}else if (tabla[i][j] === '') {
+							codigo += '<td></td>';
+					}else{
+					codigo += '<td>' + tabla[i][j] + '</td>';
+					}
+				}
+				codigo += '</tr>';
+			}
+			codigo += '</table>';
+			document.getElementById("div1").innerHTML = codigo;
+		}
+	</script>
+</head>
+
+<body onload="cargar()">
+	<h3></h3>
+	<br>
+	<div id="div1">
+	</div>
+</body>
+
+</html>
