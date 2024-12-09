@@ -6,31 +6,29 @@
 function cargar(){
 const fil=6;
 const col=4;
-const tabla =new Array(fil);
-for (let i=0;i<fil;i++)
-	tabla[i]=new Array(col);
- 
+const ele=24;
+const tabla =new Array();
+
 let n=1;
-for (let i=0;i<fil;i++)
-	for (let j=0;j<col;j++){
-		tabla[i][j]=n;
+for (let i=0;i<ele;i++){
+		tabla[i]=n;
 		n++;
-		} 
-alert(tabla)
-for (i=0; i<tabla.length;i++)
-   alert (tabla[i]);		
+	} 
+		
 
 letras=['A','B','C','D','E','F','G'];
 k=0;
 let codigo='<table border=1> ';
 	codigo+='<tr><td></td></td><td>A</td><td>B</td> <td>C</td> <td>D</td><tr> ';
-for (let i=0;i<fil;i++){
+n=0;
+        for (let i=0;i<fil;i++){
 	codigo+='<tr> <td>'+letras[k]+'</td>';
 	k++;	
 	suma = 0; 
 	for (let j=0;j<col;j++){
-		codigo+='<td>'+tabla[i][j]+'</td>' ;
-		suma+=Number(tabla[i][j]);
+		codigo+='<td>'+tabla[n]+'</td>' ;
+        n++;
+		suma+=Number(tabla[n]);
 		}
 	codigo+='<td>'+suma+'</td>'	
 	codigo+='</tr>';
