@@ -22,7 +22,44 @@
 	<script>
 
 		function comprobar() {
-		}	
+			let val1=document.getElementById("c1");
+			let val2=document.getElementById("c2");
+			let val3=document.getElementById("c3");
+			let val4=document.getElementById("c4");
+
+			const regex1 = /^[A-Z]\d*\s*[A-Z]$/;
+			const regex2 = /^([0-9]{3}\-)*[0-9]{3}$/;
+			const regex3 = /^[0-9]+[0]$/;
+			const regex4 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{6,10}$/;
+			
+			if (!val1.value.match(regex1)){
+				val1.style.backgroundColor="orange";
+			} else{
+				val1.style.backgroundColor="aqua";
+			}
+
+			if (!val2.value.match(regex2)){
+				val2.style.backgroundColor="orange";
+			} else{
+				val2.style.backgroundColor="aqua";
+			}
+
+			if (!val3.value.match(regex3)){
+				val3.style.backgroundColor="orange";
+			} else{
+				val3.style.backgroundColor="aqua";
+			}
+
+			if (!val4.value.match(regex4)){
+				val4.style.backgroundColor="orange";
+			} else{
+				val4.style.backgroundColor="aqua";
+			}
+
+			if (val1.value.match(regex1) && val2.value.match(regex2) && val3.value.match(regex3) && val4.value.match(regex4)){
+				alert("ESTA TODO BIEN!!!!!!!!!")
+			}
+			}	
 	</script>
 </head>
 
