@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>DOM</title>
-		<link rel="stylesheet" href="main.css">
-<script>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>DOM</title>
+  <link rel="stylesheet" href="main.css">
+  <script>
+    cont = 0;
+    cont2=0;
+    function alta() {
+      let usuario = document.getElementById("idusu").value;
+      p = document.createElement('p');
+      var texto = document.createTextNode(usuario);
+      p.appendChild(texto);
+      cont++;
+      cont2++;
+      if(cont==2){
+      let p1 = document.getElementsByTagName('p')[0];
+      let p = document.createElement('p');
+      let texto = document.createTextNode(usuario);
+      p.appendChild(texto);
+      document.body.insertBefore(p,p1);
+      cont=1;
+      } else
+      document.body.appendChild(p);
 
-</script>
+      if (cont2==6){
+      let el=document.getElementsByTagName('p')[5];
+	    document.body.removeChild(el);
+      cont2--;
+      }
+    }
+
+  </script>
 </head>
+
 <body>
-<h3>ÚNETE A NOSOTROS</h3>
-DATE DE ALTA Y JUEGA CON NOSOTROS<br><br>
-USUARIO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="usu1" id="idusu" size=20><br><br>
-<input type="button" value="ALTA" onclick="alta()">
-<br><br>
-<div>
-<fieldset>
-  ULTIMOS USUARIOS QUE SE HAN UNIDO A NOSOTROS
-  <div id="div1"></div>
-</fieldset>
-</div>  
+  <h3>ÚNETE A NOSOTROS</h3>
+  DATE DE ALTA Y JUEGA CON NOSOTROS<br><br>
+  USUARIO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="usu1" id="idusu" size=20><br><br>
+  <input type="button" value="ALTA" onclick="alta()">
+  <br><br>
+  <div>
+    <fieldset>
+      ULTIMOS USUARIOS QUE SE HAN UNIDO A NOSOTROS
+      <div id="div1"></div>
+    </fieldset>
+  </div>
 </body>
+
 </html>

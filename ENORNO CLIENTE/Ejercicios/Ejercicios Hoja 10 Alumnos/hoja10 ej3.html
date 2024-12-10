@@ -4,8 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Galería de Imágenes</title>
-	<style>
+	<title>DOM</title>
+
+	<title>Ejemplo de un mostrador de diapositivas</title>
+	<style type="text/css">
 		body {
 			font-family: "Trebuchet MS", Helvetica, sans-serif;
 		}
@@ -15,74 +17,65 @@
 			margin-right: auto;
 			margin-left: auto;
 			padding: 20px;
+
+
 		}
 	</style>
-	<script>
-		let galeria = [];
-		let z = 0;
-
-		function cargar() {
-			galeria = [
-				"pokemon/Bulbasaur.png",
-				"pokemon/Ivysaur.png",
-				"pokemon/Venusaur.png",
-				"pokemon/Charmander.png",
-				"pokemon/Charmeleon.png",
-				"pokemon/Charizard.png",
-				"pokemon/Squirtle.png",
-				"pokemon/Wartortle.png",
-				"pokemon/Blastoise.png"
-			];
-
-			mostrarImagen();
-			resaltarElemento();
+	<script type="text/javascript">
+		cont = 0;
+		pokemon = [
+			"pokemon/Bulbasaur.png",
+			"pokemon/Ivysaur.png",
+			"pokemon/Venusaur.png",
+			"pokemon/Charmander.png",
+			"pokemon/Charmeleon.png",
+			"pokemon/Charizard.png",
+			"pokemon/Squirtle.png",
+			"pokemon/Wartortle.png",
+			"pokemon/Blastoise.png",
+		];
+		window.onload = function primero() {
+			mostrar()
 		}
-
-		function ocultarResaltado() {
-			const elementos = document.querySelectorAll("ul li");
-			elementos.forEach(item => {
-				item.style.color = "black"; // Volvemos el texto a negro
-				item.style.fontWeight = "normal"; // Quitamos el resaltado en negrita
-			});
-		}
-
-		function resaltarElemento() {
-			ocultarResaltado(); // rdcondemos el resaltado previo
-			const elementos = document.querySelectorAll("ul li");
-			if (elementos[z]) {
-				elementos[z].style.color = "orange"; // Cambiamos el color a naranja
-				elementos[z].style.fontWeight = "bold"; // Ponemos el texto en negrita
-			}
-		}
-
-		function mostrarImagen() {
-			const contenedor = document.getElementById("fotos");
-			contenedor.innerHTML = `<img src="${galeria[z]}" alt="Imagen ${z + 1}" style="max-width: 100%; height: auto;">`;
-		}
-
 		function atras() {
-			if (z > 0) {
-				z--; // va para atras
-				mostrarImagen();
-				resaltarElemento();
-			} else {
-				alert("No puedes retroceder más.");
+			cont--;
+			if (cont < 0)
+				cont = 8;
+			mostrar();
+		}
+		function adelante() {
+			cont++;
+			if (cont > 8)
+				cont = 0;
+			mostrar();
+		}
+		function mostrar() {
+			let foto = document.getElementById("fotos");
+			foto.innerHTML = "<img src=" + pokemon[cont] + ">";
+
+			// let foto=document.getElementById("fotos");
+
+			// img=document.createElement("img");
+			// img.src=pokemon[cont];
+			// foto.appendChild(img);
+
+			// lista=document.getElementsByTagName("li")
+			// for(let i=0; i<lista.length; i++){
+			// 	lista[i].setAttribute="color", 'color:black;';
+			// }
+			// lista[cont].setAttribute="color", 'color:yellow;';
+
+			lista = document.getElementsByTagName("li");
+			for (let i = 0; i < lista.length; i++) {
+				lista[i].style = "color:black";
 			}
+			lista[cont].style = "color:yellow";
 		}
 
-		function adelante() {
-			if (z < galeria.length - 1) {
-				z++; // va para alante
-				mostrarImagen();
-				resaltarElemento();
-			} else {
-				alert("No puedes avanzar más.");
-			}
-		}
 	</script>
 </head>
 
-<body onload="cargar()">
+<body>
 	<div>
 		<ul>
 			<li>Bulbasaur</li>
@@ -95,8 +88,8 @@
 			<li>Wartortle</li>
 			<li>Blastoise</li>
 		</ul>
-		<input type="button" value="Atrás" onclick="atras()">
-		<input type="button" value="Adelante" onclick="adelante()">
+		<input type="button" value="atras" onclick="atras()">
+		<input type="button" value="adelante" onclick="adelante()">
 	</div>
 	<div id="fotos"></div>
 </body>
