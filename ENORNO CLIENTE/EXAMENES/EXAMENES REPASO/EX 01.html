@@ -135,7 +135,7 @@
             td.style.backgroundColor = "green";
             
         }
-
+      
         //FUNCION PARA LOS CAMPOS DEL DIV
         function cambiar(evento, campo) {
             if (evento.type === "mouseover") {
@@ -160,7 +160,7 @@
                 }
             }
         
-            const regex2 = /[a-zA-Z]{1}\.[0-9]{1}/;
+            const regex2 = /([a-zA-Z]\.[0-9]){2,}/;
             const codigo2 = document.getElementById("val2");
             if (codigo2.value.match(regex2)){
                 let c=window.confirm("Seguro??");
@@ -228,7 +228,7 @@
             <input type="text" id="precio" size=2 readonly>
         </form>
     </div>
-    <div id="id33" style="display:block">
+    <div id="id33" style="display:none">
         <form name="form2">
             <label>Teléfono</label>
             <input type="text" id="telefono" size=20 onmouseover="cambiar(event,this)" onmouseout="cambiar(event,this)">
