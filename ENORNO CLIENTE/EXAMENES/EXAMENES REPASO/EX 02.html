@@ -48,10 +48,7 @@
         
         const fecha= document.getElementById("fec").value;
         const fechaSeleccionada = new Date (fecha);
-        if (fechaSeleccionada.getDay()==6 || fechaSeleccionada.getDay()==0){
-            alert("No se pueden elegir ni sabados ni domingos");
-            return;
-        }
+
         const fecha_hoy = new Date();
 
         const fechaLimite = new Date(fecha_hoy);

@@ -1,63 +1,64 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>EXAMEN EJERCICIO 1</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css" />
     <style>
-        .clasePremio {
-            color: red;
-        }
+      .clasePremio {
+        color: red;
+      }
     </style>
-    <script type="text/JavaScript">
-    imagenes=new Array("Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise");
-    var mensajes = [
-            "Jugada: 2€",
-            "2 iguales: 5€ premio",
-            "3 iguales: 10€ premio"
-        ];
-        
-    var contador = 0; 
-    cont=0
-    saldo=10;
-    let tiradas = 0;
-    let gananciastotales = 0;
-    function cargar() {
-        a = window.setInterval(function() {
-                document.getElementById("idspan").innerHTML = mensajes[contador];
-                
-                contador++;
-                if (contador >= mensajes.length) {
-                    contador = 0; 
-                }
-            }, 1000); 
+    <script type="text/javascript">
+      var imagenes = new Array(
+        "Bulbasaur",
+        "Ivysaur",
+        "Venusaur",
+        "Charmander",
+        "Charmeleon",
+        "Charizard",
+        "Squirtle",
+        "Wartortle",
+        "Blastoise"
+      );
+      let dinero = 10;
+      let tiradas = 0;
+      let gananciastotales = 0;
+      function cargar() {
+        i = 0;
+        palabras = new Array(
+          "Jugada: 2€",
+          "2 iguales: premio 5€",
+          "3 iguales: premio 10€"
+        );
+        intervalo = setInterval(() => {
+          document.getElementById("idspan").innerHTML = palabras[i];
+          i = (i + 1) % palabras.length;
+        }, 3000);
+      }
+      function jugar() {
+        if (dinero < 2) {
+          alert("no te queda saldo");
+          return;
         }
+        dinero -= 2;
+        tiradas++;
+        let tabla = document.getElementById("tabla");
+        let fila = document.createElement("tr");
+        let numeros = [];
 
-    function jugar() {
-        saldo-=2;
-        if (saldo<0){
-            alert("No te queda saldo");
-            return;
+        for (let i = 0; i < 3; i++) {
+          let caja = document.createElement("td");
+          let numero = random();
+          numeros.push(numero);
+
+          let imagen = document.createElement("img");
+          imagen.src = `pokemon/${imagenes[numero]}.png`; // Aquí debería estar bien
+          caja.append(imagen);
+          fila.append(caja);
         }
-        
-        let tabla=document.getElementById("tabla");
-        let filas=document.createElement("tr");
-        let numeros=[];
-
-        for (let i=0;i<3:i++){
-            let caja=document.createElement("td");
-            let numero=random();
-            numeros.push(numero);
-
-            let imagen=document.createElement("img");
-            imagen.src="pokemon/${imagenes[numero]}.png";
-            caja.append(imagen);
-            filas.append(caja);
-        }
-
-        let repetido=0;
+        let repetido = 0;
         for (let i = 0; i < numeros.length - 1; i++) {
           for (let j = i + 1; j < numeros.length; j++) {
             if (numeros[i] === numeros[j]) {
@@ -74,12 +75,12 @@
           cajatexto = document.createElement("div");
           if (repetido == 1) {
             cajatexto.textContent = "Premio 5€";
-            saldo += 5;
+            dinero += 5;
             gananciastotales += 5;
           }
           if (repetido == 2) {
             cajatexto.textContent = "Premio 10€";
-            saldo += 10;
+            dinero += 10;
             gananciastotales += 10;
           }
           cajatexto.className = "clasePremio";
@@ -91,10 +92,9 @@
         caja.append(cajatexto);
         fila.append(caja);
         tabla.append(fila);
+      }
 
-}
-
-function random() {
+      function random() {
         return Math.floor(Math.random() * 9);
       }
       function borrar() {
@@ -137,19 +137,25 @@ function random() {
           //el boton de borrar
         );
       }
-</script>
-</head>
+    </script>
+  </head>
 
-<body onload="cargar()">
+  <body onload="cargar()">
     <div>
-        <p> JUGANDO A POKEMON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='idspan'></span></p>
-        <input type="button" value="JUGAR" onclick="jugar()">
-        <input type="button" value="BORRAR SIN PREMIO">
-        <input type="button" value="http://www.pokemongo.com/es-es/">
-        <input type="button" value="GANANCIAS">
-        <br>
-        <table id="tabla">
-        </table>
-</body>
-
+      <p>
+        JUGANDO A POKEMON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="idspan"></span>
+      </p>
+      <input type="button" value="JUGAR" onclick="jugar()" />
+      <input type="button" value="BORRAR SIN PREMIO" onclick="borrar()" />
+      <input
+        type="button"
+        value="http://www.pokemongo.com/es-es/"
+        onclick="abrirVentana(this)"
+      />
+      <input type="button" value="GANANCIAS" onclick="ganancias()" />
+      <br />
+      <table id="tabla"></table>
+    </div>
+  </body>
 </html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -80,16 +81,18 @@
 	function mostrar(){
 		let fecha=document.getElementById("fecha").value;
 		fecha=fecha.split("/");
-		fecha[1]-1;
-		let fechaIntro=new Date(fecha);
-		let fechain=fechaIntro.toLocaleDateString();
+		let fechaIntro=new Date(fecha[2],fecha[1]-1,fecha[0]);
 		let fecha_hoy=new Date();
-		let fechaBuena=fecha_hoy.toLocaleDateString();
-		alert(fechain)
-		alert(fechaBuena)
-		/*let total=fechain.getDate()-fechaBuena.getDate();
-		alert(total);
-*/}
+
+		let diferencia=fechaIntro-fecha_hoy;
+		let diasdiferencia= Math.floor(diferencia /(1000 * 60 * 60 * 24))+1;
+
+		if (diasdiferencia > 20){
+			alert("ERRORR");
+		} else{
+			alert("Le esperamos dentro de " + diasdiferencia +" dias");
+		}
+}
 </script>
 <body>
 	<form name="form">

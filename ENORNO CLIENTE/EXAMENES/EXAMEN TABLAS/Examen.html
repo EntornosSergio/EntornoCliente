@@ -16,7 +16,6 @@
         table {
             background-color: #D5DBDB;
             border: 2pt solid #fbb;
-            ;
             width: 520px;
             text-align: center;
             margin: auto;
@@ -33,25 +32,24 @@
             width: 40px;
         }
 
-        #principal {
-            width: 650px;
-            height: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         .clasetot {
             background-color: #fdebd0;
         }
+
+        .ganador {
+            background-color: #2EFE2E;
+        }
     </style>
     <script>
-        var color = Array("#FA5858", "#81BEF7", "#F3F781", "#2EFE2E");
+        var color = ["#FA5858", "#81BEF7", "#F3F781", "#2EFE2E"];
         var fil, col, tabla;
         var contador = 0;
         let numeros = [];
         let usados = [];
         filas = 0;
         columnas = 0;
+        imagen = "acierto.jpeg";
+
         function iniciar() {
             a = window.setInterval(function () {
                 var h1 = document.getElementById("h1");
@@ -60,9 +58,7 @@
                 if (contador >= color.length) {
                     contador = 0;
                 }
-
             }, 3000);
-
         }
 
         function parar() {
@@ -71,28 +67,21 @@
 
         function jugar() {
             fil = document.getElementById("jug").value;
-            if (fil == 2)
-                filas = 2;
-            if (fil == 3)
-                filas = 3;
-            if (fil == 4)
-                filas = 4;
-
+            filas = parseInt(fil);
             col = document.getElementById("fich").value;
-            if (col == 5)
-                columnas = 5;
-            if (col == 6)
-                columnas = 6;
-            if (col == 7)
-                columnas = 7;
-            if (col == 8)
-                columnas = 8;
+            columnas = parseInt(col);
 
             tabla = new Array(filas);
-            for (let i = 0; i < filas; i++)
+            for (let i = 0; i < filas; i++) {
                 tabla[i] = new Array(columnas);
+            }
 
-            for (let i = 0; i < filas; i++)
+            numeros = [];
+            usados = [];
+            let letras = ['JUGADOR 1', 'JUGADOR 2', 'JUGADOR 3', 'JUGADOR 4'];
+            aciertosPorFila = Array(filas).fill(0);
+
+            for (let i = 0; i < filas; i++) {
                 for (let j = 0; j < columnas; j++) {
                     do {
                         numero = Math.floor(Math.random() * 32) + 1;
@@ -100,53 +89,78 @@
                     numeros.push(numero);
                     tabla[i][j] = numero;
                 }
+            }
 
-            letras = ['JUGADOR 1', 'JUGADOR 2', 'JUGADOR 3', 'JUGADOR 4'];
-            k = 0;
-            let codigo = '<table border=1> ';
+            let codigo = '<table border=1>';
             for (let i = 0; i < filas; i++) {
-                codigo += '<tr> <td>' + letras[k] + '</td>';
-                k++;
-                aciertos = 0;
+                codigo += `<tr> <td>${letras[i]}</td>`;
                 for (let j = 0; j < columnas; j++) {
-                    codigo += '<td>' + tabla[i][j] + '</td>';
+                    codigo += `<td>${tabla[i][j]}</td>`;
                 }
-                codigo += '<td class="clasetot">' + aciertos + '</td>'
-                codigo += '</tr>';
+                codigo += '<td class="clasetot">0</td></tr>';
             }
             codigo += '</table>';
             document.getElementById("fichas").innerHTML = codigo;
 
+            document.getElementById("sacar").disabled = false;
         }
 
         function sacarFicha() {
             let numeroAleatorio;
             let fichaEncontrada = false;
 
-            while (!fichaEncontrada) {
-                numeroAleatorio = Math.floor(Math.random() * 32) + 1;  // Número aleatorio entre 1 y 32
+            do {
+                numeroAleatorio = Math.floor(Math.random() * 32) + 1;
+            } while (usados.includes(numeroAleatorio));
 
-                for (let i = 0; i < filas; i++) {
-                    for (let j = 0; j < columnas; j++) {
-                        if (tabla[i][j] === numeroAleatorio) {
-                            let p1 = document.getElementsByTagName('td')[0];
-                            let p = document.createElement('img');
-                            let texto = document.createTextNode("<img src='acierto.jpeg'>");
-                            p.appendChild(texto);
-                            document.body.replaceChild(p, p1);
-                            fichaEncontrada = true;
-                            break;
-                        }
+            usados.push(numeroAleatorio);
+
+            for (let i = 0; i < filas; i++) {
+                for (let j = 0; j < columnas; j++) {
+                    if (tabla[i][j] === numeroAleatorio) {
+                        fichaEncontrada = true;
+                        tabla[i][j] = `<img src="${imagen}" alt="Acierto">`;
+                        aciertosPorFila[i]++;
                     }
                 }
             }
-        }
 
+            if (fichaEncontrada) {
+                let letras = ['JUGADOR 1', 'JUGADOR 2', 'JUGADOR 3', 'JUGADOR 4'];
+                let codigo = '<table border=1>';
+                let ganador = false;
+
+                for (let i = 0; i < filas; i++) {
+                    codigo += `<tr> <td>${letras[i]}</td>`;
+                    for (let j = 0; j < columnas; j++) {
+                        codigo += `<td>${tabla[i][j]}</td>`;
+                    }
+
+                    // Verificar si el jugador ha ganado
+                    if (aciertosPorFila[i] === columnas) {
+                        codigo += `<td class="clasetot ganador">${aciertosPorFila[i]}</td>`;
+                        ganador = true;
+                        alert(`${letras[i]} ha ganado el juego!`);
+                    } else {
+                        codigo += `<td class="clasetot">${aciertosPorFila[i]}</td>`;
+                    }
+                    codigo += '</tr>';
+                }
+                codigo += '</table>';
+                document.getElementById("fichas").innerHTML = codigo;
+
+                if (ganador) {
+                    document.getElementById("sacar").disabled = true;
+                }
+            } else {
+                alert("No se encontró ficha.");
+            }
+        }
     </script>
 </head>
 
 <body onload="iniciar()">
-    <h1 id="h1" onclick="parar()"> Pierde tus fichas! </h1>
+    <h1 id="h1" onclick="parar()"> ¡Pierde tus fichas! </h1>
     Indica número de jugadores
     <select id="jug">
         <option value="2" selected>2</option>
@@ -167,9 +181,6 @@
     <input type="button" id="sacar" value="Sacar ficha" onclick="sacarFicha()">
     <input type="button" value="Reiniciar" onclick="jugar()">
     <br><br>
-
 </body>
-
-</html>
 
 </html>
