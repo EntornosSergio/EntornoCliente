@@ -16,11 +16,11 @@
 			<script src="..\..\jquery-3.7.1.min.js"> </script>
 			<script>
 			$(document).ready( function() {
-				$("p").each(function(i){
+				$("tr").each(function(i){
 				  $(this).html(i+' '+$(this).html())
 					if(i%2==0){ 
-							$(this).css("background-color", "#eee"); }
-					else{ $(this).css("background-color", "#ccc"); } });		
+							$(this).css("background-color", "green"); }
+					else{ $(this).css("background-color", "orange"); } });		
 				});			
 
 			</script>
