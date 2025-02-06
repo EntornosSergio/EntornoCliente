@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EVENTOS </title>
+    <link rel="stylesheet" href="main.css">
+    <script src="..\jquery-3.4.1.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+    <script src="..\..\jquery-3.7.1.min.js"> </script>
+
+    <script>
+        $(document).ready(function () {
+            //A
+            $("div:first").hover(function () {
+                $(this).html("PASO POR ENCIMA");
+                $(this).css("background-color", "#FAD7A0");
+            },
+                function () {
+                    $(this).html("SALGO");
+                });
+            $("div:first").on({
+                'click': function () {
+                    $(this).html("(A) Método hover(): Pasa con el ratón por encima y luego sal.");
+                    $(this).css("background-color", "white");
+                },
+
+            });
+
+            //B
+            $("#boton").on({
+                'mouseenter': function () {
+                    $(this).animate({ 'opacity': 0.3 }, 600);
+                },
+                'mouseleave': function () {
+                    $(this).animate({ 'opacity': 1.0 }, 600);
+                },
+                'click': function (evento) {
+                    $("span").html("Has hecho " + evento.type + " en el botón");
+                },
+                'dblclick': function (evento) {
+                    $("span").html("Has hecho " + evento.type + " en el botón");
+                },
+
+            });
+
+            //C
+            $("a").click(function (evento) {
+                if (!confirm("¿Estás seguro de que quieres continuar?")) {
+                    evento.preventDefault();
+                }
+            });
+
+            //D
+            $('#otro').one('click', function () {
+                alert("Solo te lo digo una vez, lo estas haciendo muy bien");
+            });
+
+            //E
+            $('p').click(function () {
+                $(this).css({
+                    "background-color": "#85C1E9",
+                    "font-size": "+=5px"
+                })
+            });
+
+            //F
+            $("#otromas").click(function () {
+                $("p").off("click");
+                $("div:first").off("mouseenter mouseleave");
+
+            });
+
+            //G
+            $('#texto').keydown(function (evento) {
+				$("#mensaje").append(evento.keyCode+" "+evento.charCode+" "+evento.key+" <br>");
+				});
+
+                $("#texto").on({
+                'focus': function () {
+                    $(this).css("background-color","#B6FAF3");
+                },
+                'blur': function () {
+                    $(this).css("background-color","white");
+                },
+                });
+            });
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <h3>GESTIÓN DE EVENTOS</h3>
+    Los eventos sirven para que el usuario interaccione con la página. A medida que se producen podemos programar
+    acciones en respuesta a éstos.
+    <br><br>
+    <div>
+        (A) Método hover(): Pasa con el ratón por encima y luego sal.
+    </div>
+    <br>
+    (B) <button id="boton" style="position:relative">Yo tengo el método on con varios
+        eventos</button><span></span><br><br>
+    (C) <a href="https://www.w3schools.com/jquery/jquery_events.asp">Eventos en W3schools</a><br><br>
+    (D) <button id="otro"> Yo tengo el método one </button><br><br>
+    (E) <p>Somos párrafos</p>
+    <p>en el que cliques se vuelve azul y su letra se agranda</p>
+    (F) <button id="otromas"> Y yo el método off. Anulo el click de los párrafos </button>
+    <br><br>
+    (G) Y para acabar dime algo bonito<input type="text" id="texto">
+    <div id="mensaje"></div>
+</body>
+
+</html>
