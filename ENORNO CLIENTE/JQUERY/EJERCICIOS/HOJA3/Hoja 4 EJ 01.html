@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>EVENTOS </title>
+	<link rel="stylesheet" href="main.css">
+	<script src="..\..\jquery-3.7.1.min.js"> </script>
+
+	<link rel="stylesheet" href="stilos 01.css" type="text/css" />
+
+	<script>
+		$(document).ready(function () {
+			$("#item1, #item2, #item3").hide();
+			$('#item1').show();
+			$('#item2').show(1000);
+			$('#item3').show(2000);
+			$("a").hover(function () {
+				$(this).css({"background-color": "gray","text-decoration":"underline"});
+			},
+				function () {
+					$(this).css({"background-color": "#333333", "text-decoration":"none"});
+				});
+
+		});
+
+	</script>
+</head>
+
+<body>
+
+	<div id="menu">
+		<ul>
+			<li><a id="item1" href="#">Inicio</a></li>
+			<li><a id="item2" href="#">Tutoriales</a></li>
+			<li><a id="item3" href="#">Ejemplos</a></li>
+		</ul>
+	</div>
+
+</body>
+
+</html>
