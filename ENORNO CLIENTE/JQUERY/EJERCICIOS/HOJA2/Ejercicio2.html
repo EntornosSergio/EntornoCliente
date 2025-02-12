@@ -12,42 +12,65 @@
     <script src="..\..\jquery-3.7.1.min.js"> </script>
 
     <script type="text/javascript">
-        function cargar() {
-            const fil = 5;
-            const col = 5;
-            const tabla = new Array(fil);
-            for (let i = 0; i < fil; i++)
-                tabla[i] = new Array(col);
-    
-            for (let i = 0; i < fil; i++) {
-                for (let j = 0; j < col; j++) {
-                    tabla[i][j] = Math.floor(Math.random() * 9) + 1; 
-                }
-            }
-    
-            let codigo = '<table border=1> ';
-            for (let i = 0; i < fil; i++) {
-                codigo += '<tr>';
-                for (let j = 0; j < col; j++) {
-                    codigo += '<td>' + tabla[i][j] + '</td>';
-                }
-                codigo += '</tr>';
-            }
-            codigo += '</table>';
-            document.getElementById("div1").innerHTML = codigo;
-        }
-        function num(){
-            numero= Math.floor(Math.random() * 100) + 1; 
-            document.getElementById("h2").innerHTML = codigo;
+        
+numero=0;
+max=0;
+total=0;
+	$(document).ready( function() {
+			max=aleatorio(0,100);
+			$("#num").val(max)
 
-        }
-    </script>
+			$("tr td").each(function(){
+			numero=aleatorio(0,50);
+			$(this).text(numero);
+			})
+
+			$("tr td").click(function(){
+				$(this).css("background-color", "red");
+				total+=Number($(this).text());
+				$("#suma").val(total);
+
+				if(total>max){
+				console.log("hola")
+				$("tr td").each(function(){
+					if($(this).css("background-color")!="rgb(255, 0, 0)"){
+						$(this).text("*")
+					}
+				})
+				$("tr td").off();
+				}
+
+				if(total==max){
+					alert("FELICIDADEEEES");
+					$("tr td").off();
+						$("tr td").each(function(){
+						$(this).css("background-color", "green")
+						
+				})
+				}
+			})
+	})
+
+	function aleatorio (min,max){
+	return Math.floor(Math.random()*(max - min +1)+min);
+	}
+
+</script>
 </head>
-
-<body  onload="cargar()">
-    <h2 onload="num()">Tienes que sumar</h2>
-    <div id="div1">
-    </div>
+<body>
+<div id="div">
+<br><br>
+TIENES QUE SUMAR <input type="text" id="num"  size=6 value=0 disabled>
+<br><br>Y LLEVAS SUMADO <input type="text" id="suma" size=6 value=0 disabled>
+<br><br>
+<table>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</div>
 </body>
 
 </html>
