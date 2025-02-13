@@ -1,28 +1,51 @@
 <html>
+
 <head>
 
-<link rel="StyleSheet" href="estilos3.css" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script></script>
+    <link rel="StyleSheet" href="estilos3.css" type="text/css">
+    <script src="..\..\jquery-3.7.1.min.js"> </script>
+    <script>
+        $(document).ready(function () {
+            $("input[type='text'], input[type='password']").on({
+                'mouseenter': function () {
+                    $(this).removeClass("caja").addClass("input_text_dentro");
+                },
+                'mouseleave': function () {
+                    $(this).removeClass("input_text_dentro").addClass("caja");
+                },
+                'focus': function(){
+                    $(this).removeClass("caja").addClass("input_text_encima");
+                },
+                'blur': function(){
+                    $(this).removeClass("input_text_encima").addClass("caja");
+                },
+            });
+            /*$("button").click(function(){
+                if($())
+            });*/
+        });
+    </script>
 
 </head>
+
 <body>
-<div id="caja" class="myform">
-<form id="formulario" >
-<h1>Formulario De Registro</h1>
-<p>Prueba de addclass y removeclass</p>
+    <div id="caja" class="myform">
+        <form id="formulario">
+            <h1>Formulario De Registro</h1>
+            <p>Prueba de addclass y removeclass</p>
 
-<label>Nombre<span class="peque">Teclea nombre</span></label>
-<input type="text" name="nombre" id="nombre" class="campo"/>
+            <label>Nombre<span class="peque">Teclea nombre</span></label>
+            <input type="text" name="nombre" id="nombre" class="campo" />
 
-<label>Email<span class="peque">Teclea email</span></label>
-<input type="text" name="email" id="email" class="campo" />
+            <label>Email<span class="peque">Teclea email</span></label>
+            <input type="text" name="email" id="email" class="campo" />
 
-<label>Password<span class="peque">Min. size 6 chars</span></label>
-<input type="password" name="password" id="password" class="campo" />
+            <label>Password<span class="peque">Min. size 6 chars</span></label>
+            <input type="password" name="password" id="password" class="campo" />
 
-<button type="submit">Registrar</button>
-</form>
-</div>
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
 </body>
+
 </html>
